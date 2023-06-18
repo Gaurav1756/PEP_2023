@@ -4,7 +4,7 @@ using namespace std;
 
 int maxSum(int arr[][4], int i, int j) {
     int ans = INT_MIN;
-    int index = 0;
+    int index = -1;
     for(int i = 0; i < 3; i++) {
         int sum = 0;
         for(int j = 0; j < 4; j++) {
@@ -15,6 +15,7 @@ int maxSum(int arr[][4], int i, int j) {
         }
         ans = max(ans,sum);
     }
+    cout<<ans<<endl;
     return index;
 }
 
