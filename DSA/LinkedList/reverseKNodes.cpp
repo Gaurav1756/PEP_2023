@@ -32,49 +32,28 @@ void insertAtTail(Node* &head, int val) {
     temp->next = n;
 }
 
-void deletion(Node* &head, int key) {
+Node* Kreverse(Node* &head, int k) {
     if(head == NULL) {
-        return;
+        return NULL;
     }
-    Node* temp = head;
-    while(temp->next->data != key) {
-        temp = temp->next;
-    }
-    Node* first = temp->next;
-    temp->next = temp->next->next;
-    delete(first);
 
-}
-
-void deleteAtHead(Node* &head) {
-    Node* nodeToDelete = head;
-    head = head->next;
-    delete(nodeToDelete);
-}
-
-bool search(Node* &head, int key) {
-    Node* temp = head;
-    while(temp != NULL) {
-        if(temp->data == key) {
-            return true;
-        }
-        temp = temp->next;
-    }
-    return false;
-}
-
-void reverse(Node* &head) {
     Node* prev = NULL;
     Node* curr = head;
-    Node* forward = NULL;
+    Node* forward;
 
-    while(curr != NULL) {
+    int count = 0;  
+
+    while(count < k && curr != NULL) {
         forward = curr->next;
         curr->next = prev;
         prev = curr;
         curr = forward;
+        count++;
     }
-    head = prev;
+    if(forward != NULL) {
+        head->next = Kreverse(forward,k);
+    }
+    return prev;
 }
 
 void display(Node* &head) {
@@ -94,17 +73,7 @@ int main() {
     insertAtTail(head,9);
     insertAtTail(head,10);
     insertAtHead(head,5);
-    // deleteAtHead(head);
-    // deletion(head,10);
-    // bool ans = search(head,8);
-    // if(ans) {
-    //     cout<<"Element is present";
-    // }
-    // else {
-    //     cout<<"Element is not present";
-    // }
     display(head);
-    reverse(head);
-    display(head);
-
+    Node* ans = Kreverse(head,2);
+    display(ans);
 }

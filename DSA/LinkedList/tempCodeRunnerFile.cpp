@@ -1,0 +1,1 @@
+ // deletion(head,6);
